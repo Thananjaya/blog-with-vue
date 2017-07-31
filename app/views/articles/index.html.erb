@@ -1,0 +1,11 @@
+
+
+<% @articles.each do |a| %>
+  <%= link_to a.title, article_path(a) %>
+  <%= a.content %>
+  <%= a.subcategories.pluck(:title).join(', ')%><br>
+<%end%>
+
+<br>
+
+<%= link_to "NEW" , new_article_path %>

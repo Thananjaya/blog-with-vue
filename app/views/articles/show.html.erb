@@ -1,0 +1,7 @@
+<%= @article.title %>
+<%= @article.content %>
+<%= @article.subcategories.pluck(:title).join(', ') %>
+
+<%= link_to "delete", article_path(@article), method: :delete, data: {confirm: "Do you want to delete"} %>
+
+<%= link_to "Back", articles_path %>

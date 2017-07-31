@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>First</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@0.7.4/dist/vue-material.css">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-material@0.7.4"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <md-toolbar>
+        <md-button class="md-icon-button" @click="toggleLeftSidenav">
+          <md-icon>menu</md-icon>
+        </md-button>
+        <h2 class="md-title" style="flex: 1"><%= link_to "Blog-er", root_path %></h2>
+      </md-toolbar>
+
+      <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
+      <md-toolbar class="md-large">
+        <div class="md-toolbar-container">
+          <h3 class="md-title"> Pic-Loader </h3>
+        </div>
+      </md-toolbar>
+      <md-list>
+        <md-list-item><%= link_to "Categories", categories_path %></md-list-item>
+        <md-list-item><%= link_to "Subcategories", subcategories_path %></md-list-item>
+      </md-list>
+      </md-sidenav>
+    </div>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <script>
+      Vue.use(VueMaterial)
+      new Vue({
+        el: "#app",
+        methods: {
+          toggleLeftSidenav(){
+            this.$refs.leftSidenav.toggle()
+          },
+          open(ref) {
+            console.log('Opened: ' + ref) 
+          },
+          close(ref){
+            console.log('Closed: ' + ref)
+          },
+        }
+      });
+      </script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+<%= @category.title %>
+
+<br>
+<%= link_to "delete", category_path(@category), method: :delete, data: {confirrm: "Do u want to delete"} %>
+
+<br>
+
+<%= link_to "back", categories_path %>

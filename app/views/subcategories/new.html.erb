@@ -1,0 +1,6 @@
+<%= simple_form_for @subcategory do |s| %>
+  <%= s.input :title %>
+  <%= s.input :category_id, collection: Category.all%>
+  <%= s.button :submit %>
+<%end%>
+  

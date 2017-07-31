@@ -1,0 +1,46 @@
+
+<h1>Category(s) </h1>
+
+<br><br>
+<div id="cat">
+  <md-table>
+    <md-table-header>
+      <md-table-row>
+        <md-table-head>S.No </md-table-head>
+        <md-table-head> Category </md-table-head>
+        <md-table-head> Subcategory </md-table-head>
+        <md-table-head> Action </md-table-head>
+      </md-table-row>
+    </md-table-header>
+
+    <md-table-body>
+      <% unless @categories.blank? %>
+        <% @categories.each_with_index do |c, index| %>
+          <md-table-row >
+            <md-table-cell><%= index + 1 %></md-table-cell>
+            <md-table-cell ><%= c.title rescue "NA" %></md-table-cell>
+            <md-table-cell >
+              <md-list>
+                <% c.subcategories.each do |cs| %>
+                  <md-list-item><%= cs.title %></md-list-item>
+                <%end%> 
+              </md-list> 
+            </md-table-cell>
+            <md-table-cell > TO DO </md-table-cell>
+          </md-table-row>
+        <% end %>
+      <% else %>
+        <md-table-row>
+          <md-table-cell colspan="4"> NO CATEGORY FOUND </md-table-cell>
+        </md-table-row>            
+      <%end%>
+    </md-table-body>
+  </md-table>
+</div>
+
+<script>
+  Vue.use(VueMaterial)
+  new Vue({
+    el:'#cat'
+  });  
+</script> 

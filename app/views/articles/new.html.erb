@@ -1,0 +1,6 @@
+<%= simple_form_for @article do |a| %>
+  <%= a.input :title %>
+  <%= a.input :content %>
+  <%= a.association :subcategories, collection: Subcategory.all %>
+  <%= a.button :submit %>
+<%end%>  

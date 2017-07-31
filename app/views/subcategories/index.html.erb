@@ -1,0 +1,8 @@
+<% @subcategories.each do |s|%>
+  <%= link_to s.title, subcategory_path(s) %>
+  <br>
+<%end%>
+
+
+<br>
+<%= link_to "NEW", new_subcategory_path %>

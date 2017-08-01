@@ -1,7 +1,27 @@
-<%= @article.title %>
-<%= @article.content %>
-<%= @article.subcategories.pluck(:title).join(', ') %>
 
-<%= link_to "delete", article_path(@article), method: :delete, data: {confirm: "Do you want to delete"} %>
 
-<%= link_to "Back", articles_path %>
+<div id="articleshow">
+  <div class="md-list-text-container" style="margin-top: 20px; color: #8a8a5c">
+    <span ><%= @article.title %></span>
+  </div>
+  <div class="jumbotron" style="margin-top:20px;">
+  <p style="margin-top: 5px; margin-right: 5px; margin-left: 5px; text-align: justify;"><%= @article.content %></p>
+  </div>
+  <%= @article.subcategories.pluck(:title).join(', ') %>
+
+
+
+<md-button class="md-warm pull-right" style="margin-top:20px;"><%= link_to "delete", article_path(@article), method: :delete, data: {confirm: "Do you want to delete"} %></md-button>
+</div>
+
+
+
+
+
+
+<script>
+  Vue.use(VueMaterial)
+  new Vue({
+    el:"#articleshow"
+  });
+</script>  

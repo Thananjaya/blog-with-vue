@@ -1,11 +1,91 @@
+<div id="articleindex">
+ 
+  <h1> Article(s) </h1> 
+    
+  <br><br>
 
+    <md-table>
+      <md-table-header>
+        <md-table-row>
+          <md-table-head>S.No </md-table-head>
+          <md-table-head> Title </md-table-head>
+          <md-table-head> Subcategory </md-table-head>
+          <md-table-head> Action </md-table-head>
+        </md-table-row>
+      </md-table-header>
 
-<% @articles.each do |a| %>
-  <%= link_to a.title, article_path(a) %>
-  <%= a.content %>
-  <%= a.subcategories.pluck(:title).join(', ')%><br>
-<%end%>
+      <md-table-body>
+        <% unless @articles.blank? %>
+          <% @articles.each_with_index do |a, index| %>
+            <md-table-row >
+              <md-table-cell><%= index + 1 %></md-table-cell>
+              <md-table-cell ><%= a.title rescue "NA" %></md-table-cell>
+              <md-table-cell >
+                  <% a.subcategories.each do |as| %>
+                    <%= as.title %>
+                  <%end%>  
+              </md-table-cell>
+              <md-table-cell > 
+                <span style="display:inline-block;"> 
+                  <div class="btn btn-default" id="primarybutton">
+                    <%= link_to "Show", article_path(a) %>
+                  </div> 
+                  
+                  <div class="btn btn-default" id="dangerbutton">
+                    <%= link_to "Delete", articles_path(a), method: :delete, data:{ confirm: " Do you want to delete" } %>
+                  </div>
+                  <div class="btn btn-default" id="editbutton">
+                    <%= link_to "Edit", edit_article_path(a) %>
+                  </div>  
+                </span>   
+              </md-table-cell>
+            </md-table-row>
+          <% end %>
+        <% else %>
+          <md-table-row>
+            <md-table-cell colspan="4"> NO CATEGORY FOUND </md-table-cell>
+          </md-table-row>            
+        <%end%>
+      </md-table-body>
+    </md-table>
+</div>
 
-<br>
+<style>
+  #primarybutton {
+    border-radius: 50%;
+  }
 
-<%= link_to "NEW" , new_article_path %>
+  #dangerbutton{
+    border-radius: 50%;
+  }
+  #cate:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  #primarybutton:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color: #99b3ff;
+
+  }
+
+  #dangerbutton:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color: #ffb3b3;
+  }
+
+  #editbutton:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color: #99ff99;
+  }
+
+  #editbutton {
+    border-radius: 50%;
+  }
+</style>
+
+<script>
+  Vue.use(VueMaterial);
+  new Vue({
+    el:"#articleindex"
+  });
+</script>

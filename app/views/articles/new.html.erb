@@ -1,6 +1,31 @@
-<%= simple_form_for @article do |a| %>
-  <%= a.input :title %>
-  <%= a.input :content %>
-  <%= a.association :subcategories, collection: Subcategory.all %>
-  <%= a.button :submit %>
-<%end%>  
+
+<div id="articlenew">
+
+  <%= simple_form_for @article do |a| %>
+    <md-input-container>
+      <label> Title </label>
+      <md-input placeholder="" name="article[title]" id="article"></md-input>
+    </md-input-container>
+    <%= a.input :content %>
+    <md-input-container>
+      <label for="article">Subcategory </label>
+      <md-select name="article[subcategory_ids]" id="article"  v-model="article">
+        <% Subcategory.all.each do |cs| %>
+          <md-option value="<%= cs.id %>"><%= cs.title rescue "NA" %></md-option>
+        <% end %>  
+      </md-select>
+    </md-input-container>       
+    <br><br><%= a.button :submit %>
+  <%end%>  
+
+
+</div>
+
+<script>
+Vue.use(VueMaterial)
+
+new Vue({
+  el:"#articlenew",
+  
+});
+</script>

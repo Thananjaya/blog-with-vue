@@ -12,6 +12,7 @@ class SubcategoriesController < ApplicationController
   end
 
   def update
+    @subcategory=Subcategory.find(params[:id])
     if @subcategory.update(permit_subcategory)
       redirect_to subcategory_path(@subcategory)
     else

@@ -1,4 +1,18 @@
-<%= simple_form_for @category do |c| %>
-  <%= c.input :title %>
-  <%= c.button :submit %>
-<%end%>  
+<div id="cate">
+  <%= simple_form_for @category do |c| %>
+    
+    <md-input-container>
+      <label>title</label>
+      <md-input plaeholder="Title" name="category[title]"></md-input>
+    </md-input-container>  
+    <%= c.button :submit %>
+  <%end%>
+</div>
+
+<script>
+  Vue.use(VueMaterial)
+  new Vue({
+    el:"#cate"
+  });
+</script>
+

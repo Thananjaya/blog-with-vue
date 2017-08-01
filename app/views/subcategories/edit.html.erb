@@ -1,2 +1,26 @@
-<h1>Subcategories#edit</h1>
-<p>Find me in app/views/subcategories/edit.html.erb</p>
+<div id="subs">
+  <%= simple_form_for @subcategory do |s| %>
+    
+    <md-input-container>
+      <label>Title</label>
+      <md-input placeholder="title" name="subcategory[title]"></md-input>
+    </md-input-container>
+    <md-input-container>
+      <label>Category </label>
+      <md-select name="subcategory[category_id]" id="subcategory" v-model="subcategory">
+      <% Category.all.each do |c| %>
+        <md-option value="<%= c.id %>"><%= c.title %></md-option>
+      <%end%>
+      </md-select>
+    </md-input-container>
+    <%= s.button :submit %>
+  <%end%>
+</div>
+
+<script>
+  Vue.use(VueMaterial)
+  new Vue({
+    el:"#subs"
+  });
+</script>
+  

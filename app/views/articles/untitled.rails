@@ -1,0 +1,30 @@
+<md-input-container>
+    <label for="article">Subcategory </label>
+    <md-select name="article[subcategory]" id="article" v-model="article">
+    <md-option value="hello"><%=Subcategory.all%></md-option>
+    </md-select>
+    </md-input-container>
+
+
+    <%= a.collection_select :subcategory_ids, Subcategory.all, :id, :title, prompt: "Select Subcategory" %>
+
+
+
+    <md-input-container>
+      <label for="article">Subcategory </label>
+      <md-select name="article[subcategory_ids]" id="article" multiple v-model="article">
+        <% Subcategory.all.each do |cs| %>
+          <md-option value="<%= cs.id %>"><%= cs.title rescue "NA" %></md-option>
+        <% end %>  
+      </md-select>
+    </md-input-container>
+
+
+    <md-input-container>
+      <label for="article">Subcategories</label>
+      <md-select name="article[subcategory_id]" id="article" v-model="article">
+      <% Subcategory.all.each do |s|%>
+        <md-option value="<%= s.id%>"> <%= s.title %> </md-option>
+      <%end%>
+      </md-select>
+    </md-input-container>

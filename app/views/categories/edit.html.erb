@@ -1,2 +1,18 @@
-<h1>Categories#edit</h1>
-<p>Find me in app/views/categories/edit.html.erb</p>
+<div id="editcate">
+  <%= simple_form_for @category do |c| %>
+    
+    <md-input-container>
+      <label>title</label>
+      <md-input plaeholder="Title" name="category[title]"></md-input>
+    </md-input-container>  
+    <%= c.button :submit %>
+  <%end%>
+</div>
+
+<script>
+  Vue.use(VueMaterial)
+  new Vue({
+    el:"#editcate"
+  });
+</script>
+

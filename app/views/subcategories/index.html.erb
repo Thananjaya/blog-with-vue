@@ -1,8 +1,91 @@
-<% @subcategories.each do |s|%>
-  <%= link_to s.title, subcategory_path(s) %>
-  <br>
-<%end%>
+<div id="subcat">
+<h1>Subcategory(s) </h1>
+<md-button class="md-raised pull-right" id="cate"><%= link_to "New Sub-category", new_subcategory_path %></md-button>
 
+<br><br>
 
-<br>
-<%= link_to "NEW", new_subcategory_path %>
+  <md-table>
+    <md-table-header>
+      <md-table-row>
+        <md-table-head>S.No </md-table-head>
+        <md-table-head> Subcategory </md-table-head>
+        <md-table-head> Action </md-table-head>
+      </md-table-row>
+    </md-table-header>
+
+    <md-table-body>
+      <% unless @subcategories.blank? %>
+        <% @subcategories.each_with_index do |s, index| %>
+          <md-table-row >
+            <md-table-cell><%= index + 1 %></md-table-cell>
+            <md-table-cell ><%= s.title rescue "NA" %></md-table-cell>
+            <md-table-cell>
+              <span style="display:inline-block;">
+                <div class="btn btn-default" id="primarybutton">
+                  <%= link_to "Show", subcategory_path(s) %>
+                </div> 
+                  
+                <div class="btn btn-default" id="dangerbutton">
+                  <%= link_to "Delete", subcategories_path(s), method: :delete, data:{ confirm: " Do you want to delete" } %>
+                </div>
+                <div class="btn btn-default" id="editbutton">
+                  <%= link_to "Edit", edit_subcategory_path(s) %>
+                </div>
+              </span>
+            </md-table-cell>    
+          </md-table-row>
+        <% end %>
+      <% else %>
+        <md-table-row>
+          <md-table-cell colspan="4"> NO CATEGORY FOUND </md-table-cell>
+        </md-table-row>            
+      <%end%>
+    </md-table-body>
+  </md-table>
+</div>
+
+<script>
+  Vue.use(VueMaterial)
+  new Vue({
+    el:'#subcat'
+  });  
+</script>
+
+<style>
+
+  #cate:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  #primarybutton {
+    border-radius: 50%;
+  }
+
+  #dangerbutton{
+    border-radius: 50%;
+  }
+  #cate:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  #primarybutton:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color: #99b3ff;
+
+  }
+
+  #dangerbutton:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color: #ffb3b3;
+  }
+
+  #editbutton:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color: #99ff99;
+  }
+
+  #editbutton {
+    border-radius: 50%;
+  }
+
+</style>

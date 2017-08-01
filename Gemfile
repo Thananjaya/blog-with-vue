@@ -16,6 +16,8 @@ gem 'simple_form', '~> 3.5'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'bootstrap-wysihtml5-rails', '~> 0.3.3.8'
+gem 'trix', '~> 0.10.2'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

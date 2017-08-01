@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    @article=Article.find(params[:id])
     if @article.update(permit_article)
       redirect_to article_path(@article)
     else
@@ -42,6 +43,6 @@ class ArticlesController < ApplicationController
   private
 
     def permit_article
-      params.require(:article).permit(:title, :content, subcategory_ids: [])
+      params.require(:article).permit(:title, :content, :subcategory_ids)
     end  
 end

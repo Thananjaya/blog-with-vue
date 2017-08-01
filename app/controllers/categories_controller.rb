@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    @category=Category.find(params[:id])
     if @category.update(permit_category)
       redirect_to category_path(@category)
     else
@@ -22,7 +23,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category=Category.find(params[:id])
     @category.destroy
-    redirect_to 'index'
+    redirect_to categories_path
   end
 
   def edit
